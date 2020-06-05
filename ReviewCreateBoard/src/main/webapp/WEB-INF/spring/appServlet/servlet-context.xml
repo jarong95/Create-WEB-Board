@@ -23,6 +23,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="global.sesoc.web6" />
+	<context:component-scan base-package="Create.Board.Review" />
 	
 </beans:beans>
