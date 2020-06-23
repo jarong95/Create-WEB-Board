@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="park.jae.sung.dao.MemberMapper">
+<mapper namespace="Create.Board.Review.DAO.MemberMapper">
 	<select id="checkID" resultType="m" parameterType="m">
 	select
 		*

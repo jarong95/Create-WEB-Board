@@ -17,7 +17,7 @@ filename varchar2(100),
 filesavename varchar2(200),
 likenum number default 0);
 
-create sequence peronal_project_boardnum_seq;
+create sequence personal_project_boardnum_seq;
 create sequence personal_project_replynum_seq;
 
 create table personal_project_reply(

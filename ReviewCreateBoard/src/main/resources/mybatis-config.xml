@@ -4,10 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="park.jae.sung.vo.BoardVO" alias="b"></typeAlias>
-		<typeAlias type="park.jae.sung.vo.LikeVO" alias="l"></typeAlias>
-		<typeAlias type="park.jae.sung.vo.MemberVO" alias="m"></typeAlias>
-		<typeAlias type="park.jae.sung.vo.ReplyVO" alias="r"></typeAlias>
+		<typeAlias type="Create.Board.Review.VO.BoardVO" alias="b"></typeAlias>
+		<typeAlias type="Create.Board.Review.VO.LikeVO" alias="l"></typeAlias>
+		<typeAlias type="Create.Board.Review.VO.MemberVO" alias="m"></typeAlias>
+		<typeAlias type="Create.Board.Review.VO.ReplyVO" alias="r"></typeAlias>
 	</typeAliases>
 	<mappers>
 		<mapper resource="memberMapper.xml"></mapper>
