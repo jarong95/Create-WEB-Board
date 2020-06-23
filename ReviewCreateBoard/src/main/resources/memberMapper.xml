@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="park.jae.sung.dao.MemberMapper">
+	<select id="checkID" resultType="m" parameterType="m">
+	select
+		*
+	from
+		personal_project_member
+	where
+		id = #{id}
+		and
+		password = #{password}
+	</select>
+	<insert id="joinID" parameterType="m">
+	insert 
+	into
+		personal_project_member
+		(
+			id
+			, password
+			, email
+			, name
+		)
+	values
+		(
+			#{id}
+			, #{password}
+			, #{email}
+			, #{name}
+		)
+	</insert>
+	<select id="getInfo" parameterType="m" resultType="m">
+	select
+		*
+	from
+		personal_project_member
+	where
+		id = #{id}
+	</select>
+	<update id="setInfo" parameterType="m">
+	update
+		personal_project_member
+	set
+		id = #{id}
+		<if test="password != null and password != ''">
+		, password = #{password}
+		</if>
+		<if test="email != null and email != ''">
+		, email = #{email}
+		</if>
+		<if test="name != null and name != ''">
+		, name = #{name}
+		</if>
+	where
+		id = #{id}
+	</update>
+	<update id="deleteID" parameterType="string">
+	update
+		personal_project_member
+	set
+		deletedate = sysdate
+	where
+		id = #{id}
+	</update>
+	<delete id="deleteCheck">
+	delete
+	from
+		personal_project_member
+	where
+		sysdate-deletedate > 7
+	</delete>
+	<select id="checkID2" parameterType="string" resultType="int">
+	select
+		count(*)
+	from
+		personal_project_member
+	where
+		id = #{id}
+	</select>
+	<update id="recoveryID" parameterType="string">
+	update
+		personal_project_member
+	set
+		deletedate = null
+	where
+		id = #{id}
+	</update>
+</mapper>

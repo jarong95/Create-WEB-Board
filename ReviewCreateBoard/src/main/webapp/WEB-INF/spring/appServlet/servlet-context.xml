@@ -7,7 +7,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -15,7 +14,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
+	<resources mapping="/imgfile/**" location="file:///D:/boardfile/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -25,4 +24,47 @@
 	
 	<context:component-scan base-package="Create.Board.Review" />
 	
+	<!-- 로그인 인터셉터 정의 -->
+	<beans:bean id="loginInterceptor" class="Create.Board.Review.LoginInterceptor"></beans:bean>
+	<beans:bean id="UserInterceptor" class="Create.Board.Review.UserInterceptor"></beans:bean>
+	<beans:bean id="DeleteInterceptor" class="Create.Board.Review.DeleteInterceptor"></beans:bean>
+	
+	<!-- 로그인 인터셉터를 경유해서 처리할 경로들 지정 -->
+	<!-- 현 XML파일 상단의 beans 태그 내에 xmlns:mvc="http://www.springframework.org/schema/mvc" 추가하고 사용 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 특정 네임스페이스 하위의 모든 경로에 대하여 다음과 같이 와일드카드 지정 가능 -->
+			<!-- <mvc:mapping path="/board/**" /> -->
+			<mvc:mapping path="/logout" />
+			<mvc:mapping path="/update" />
+			<mvc:mapping path="/delete" />
+			<mvc:mapping path="/write" />
+			<mvc:mapping path="/board" />
+			<mvc:mapping path="/updateBoard" />
+			<mvc:mapping path="/deleteBoard" />
+			<mvc:mapping path="/like" />
+			<mvc:mapping path="/download" />
+			<mvc:mapping path="/read" />
+			<mvc:mapping path="/reply" />
+			<mvc:mapping path="/deleteRE" />
+			<mvc:mapping path="/updateRE" />
+			<mvc:mapping path="/recovery" />
+			<!-- 위의 경로들은 다음의 인터셉터를 경유한다. -->
+			<beans:ref bean="loginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<!-- 특정 네임스페이스 하위의 모든 경로에 대하여 다음과 같이 와일드카드 지정 가능 -->
+			<!-- <mvc:mapping path="/board/**" /> -->
+			<mvc:mapping path="/" />
+			<!-- 위의 경로들은 다음의 인터셉터를 경유한다. -->
+			<beans:ref bean="DeleteInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<!-- 특정 네임스페이스 하위의 모든 경로에 대하여 다음과 같이 와일드카드 지정 가능 -->
+			<!-- <mvc:mapping path="/board/**" /> -->
+			<mvc:mapping path="/" />
+			<!-- 위의 경로들은 다음의 인터셉터를 경유한다. -->
+			<beans:ref bean="UserInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans:beans>

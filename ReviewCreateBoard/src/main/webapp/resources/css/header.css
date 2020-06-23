@@ -1,0 +1,650 @@
+/* ------------------------------------헤더임-------------------------------------- */
+
+a{
+	transition: all 0.3s ease 0s;
+}
+
+th{
+	height: 70px;
+}
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: white;
+	height: 175px;
+	overflow: hidden;
+	transition: 0.3s;
+	z-index: 999;
+}
+
+.header .headerIn {
+	width: 90%;
+	max-width: 69em;
+	margin: 0 auto;
+	padding: 0 1.875em;
+}
+
+.header h1, .header nav {
+	display: inline-block;
+	position: relative;
+}
+
+ /* We just have one-lined elements, so we'll center the elements with the line-height set to the height of the header */
+.header nav a {
+	line-height: 30px;	
+}
+.header h1 {
+	text-transform: uppercase;
+	color: #333;
+	letter-spacing: 4px;
+	font-size: 4em;
+	margin: 0;
+	float: left;
+	line-height: 100px;
+}
+
+.header .searchbar {
+	float: right;
+}
+
+.header .searchbar a {
+	color: #aaa;
+	font-weight: 700;
+	margin: 0 20px 0 20px;
+	font-size: 1.4em;
+}
+
+.header h1 a {
+	color: black;
+	text-decoration: none;
+	
+}
+
+.header .searchbar a:hover {
+	color: #333;
+}
+/* ------------------------------------헤더임-------------------------------------- */
+
+
+
+
+
+
+/*--------------------------------------------------------여기부터는 검색부분임---------------------------------------------------------------*/
+/*---------------------------------상단바 검색바 옵션선택 부분-------------------------------------*/
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: #007fff;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 15px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: white;
+  padding: 3px 4px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: #76BBFF;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 7;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/*---------------------------------상단바 검색바 옵션선택 부분 끝임-------------------------------------*/
+
+
+
+/*-----------------------------------여기부터는 검색창임--------------------------------------*/
+input[type=text] {
+  width: 400px;
+  border: 2px solid #007fff;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  padding: 6px 20px 6px 30px;
+}
+.searchbtn{
+margin: 5 10 5 10;
+}
+/*-----------------------------------검색창 끝임--------------------------------------*/
+
+
+
+
+/*--------------------------------여기부터 네비 바임-------------------------------------*/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #007FFF;
+  color: white;
+}
+
+
+
+/* ----------------------------------sign up sign in 입니당----------------------------------- */
+
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+input, textarea {
+  font-family: "PT Sans", sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+input::-ms-clear, textarea::-ms-clear {
+  display: none;
+}
+
+#cody-info {
+  position: relative;
+  background: #FFF;
+  height: 44px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+#cody-info .cody-info-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -15px;
+  margin-top: -13px;
+}
+#cody-info .cody-info-logo svg {
+  display: block;
+  -webkit-transition: opacity, 0.2s;
+  -moz-transition: opacity, 0.2s;
+  transition: opacity, 0.2s;
+}
+#cody-info .cody-info-logo svg:hover {
+  opacity: .9;
+}
+#cody-info .cody-info-logo .cody-info-logo-svg {
+  fill: #343642;
+}
+#cody-info li {
+  position: absolute;
+  top: 0;
+}
+#cody-info li:first-child {
+  left: 0;
+}
+#cody-info li:last-child {
+  right: 0;
+}
+#cody-info li a {
+  display: block;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  -webkit-transition: background 0.2s;
+  -moz-transition: background 0.2s;
+  transition: background 0.2s;
+}
+#cody-info li a:hover {
+  background-color: #29889b;
+}
+#cody-info li a:hover .cody-info-buttons-svg {
+  fill: #FFF;
+}
+#cody-info li svg {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -16px;
+}
+#cody-info li .cody-info-buttons-svg {
+  fill: #29889b;
+}
+#cody-info.cody-info-bottom {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.1);
+}
+#cody-info::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+@media only screen and (min-width: 600px) {
+  #cody-info {
+    height: 60px;
+  }
+  #cody-info li a {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+
+
+@media only screen and (min-width: 768px) {
+  header[role=banner] {
+    height: 80px;
+  }
+  header[role=banner] #cd-logo {
+    margin: 20px 0 0 5%;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.main-nav, .main-nav2 {
+  float: right;
+  margin-right: 5%;
+  width: 44px;
+  height: 100%;
+  cursor: pointer;
+}
+.main-nav .signinup ul, .main-nav2 .userBar ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.main-nav .signinup a, .main-nav2 .userBar a {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 5%;
+  background: #292a34;
+  border-top: 1px solid #3b3d4b;
+  color: #FFF;
+  
+}
+
+.main-nav .signinup a:hover, .main-nav2 .userBar a:hover {
+	background-color: white;
+	color: #333;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .main-nav, .main-nav2 {
+    width: auto;
+    height: auto;
+    background: none;
+    cursor: auto;
+  }
+  .main-nav .signinup ul, .main-nav2 .userBar ul {
+    position: static;
+    width: auto;
+    line-height: 80px;
+  }
+  .main-nav .signinup li, .main-nav2 .userBar li {
+    display: inline-block;
+    margin-left: 1em;
+  }
+  .main-nav .signinup li:nth-last-child(2), .main-nav2 .userBar li:nth-last-child(2) {
+    margin-left: 2em;
+  }
+  .main-nav .signinup a, .main-nav2 .userBar a {
+    display: inline-block;
+    height: auto;
+    line-height: normal;
+    background: #007fff;
+  }
+  .main-nav .signinup a .cd-signin, .main-nav .signinup a .cd-signup, .main-nav2 .userBar a .ub-logout, .main-nav2 .userBar a .ub-lib {
+    padding: .6em 1em;
+    border: 1px;
+    border-radius: 50em;
+  }
+  .main-nav .signinup a .cd-signup, .main-nav2 .userBar a .ub-lib {
+    background: #007fff;
+    border: none;
+  }
+}
+
+.cd-user-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(52, 54, 66, 0.9);
+  z-index: 6;
+  overflow-y: auto;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s 0, visibility 0 0.3s;
+  -moz-transition: opacity 0.3s 0, visibility 0 0.3s;
+  transition: opacity 0.3s 0, visibility 0 0.3s;
+}
+.cd-user-modal.is-visible {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s 0, visibility 0 0;
+  -moz-transition: opacity 0.3s 0, visibility 0 0;
+  transition: opacity 0.3s 0, visibility 0 0;
+}
+.cd-user-modal.is-visible .cd-user-modal-container {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.cd-user-modal-container {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  background: #FFF;
+  margin: 3em auto 4em;
+  cursor: auto;
+  border-radius: 0.25em;
+  -webkit-transform: translateY(-30px);
+  -moz-transform: translateY(-30px);
+  -ms-transform: translateY(-30px);
+  -o-transform: translateY(-30px);
+  transform: translateY(-30px);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.cd-user-modal-container .cd-switcher:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.cd-user-modal-container .cd-switcher li {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+.cd-user-modal-container .cd-switcher li:first-child a {
+  border-radius: .25em 0 0 0;
+}
+.cd-user-modal-container .cd-switcher li:last-child a {
+  border-radius: 0 .25em 0 0;
+}
+.cd-user-modal-container .cd-switcher a {
+  display: block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #fff;
+  color: #809191;
+}
+.cd-user-modal-container .cd-switcher a {
+  background: #FFF;
+  color: #505260;
+}
+@media only screen and (min-width: 600px) {
+  .cd-user-modal-container {
+    margin: 4em auto;
+  }
+  .cd-user-modal-container .cd-switcher a {
+    height: 70px;
+    line-height: 70px;
+  }
+}
+
+#switcherSignin:hover, #switcherSignup:hover {
+	background-color: #f6f6f6;
+}
+
+
+.cd-form {
+  padding: 1.4em;
+}
+.cd-form .fieldset {
+  position: relative;
+  margin: 1.4em 0;
+}
+.cd-form .fieldset:first-child {
+  margin-top: 0;
+}
+.cd-form .fieldset:last-child {
+  margin-bottom: 0;
+}
+.cd-form label {
+  font-size: 14px;
+  font-size: 0.875rem;
+}
+.cd-form label.image-replace {
+  /* replace text with an icon */
+  display: inline-block;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  color: transparent;
+  text-shadow: none;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+}
+
+.cd-form input {
+  margin: 0;
+  padding: 0;
+  border-radius: 0.25em;
+}
+.cd-form input.full-width {
+  width: 100%;
+}
+.cd-form input.has-padding {
+  padding: 12px 20px 12px 50px;
+}
+.cd-form input.has-border {
+  border: 1px solid #d2d8d8;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.cd-form input.has-border:focus {
+  border-color: #343642;
+  box-shadow: 0 0 5px rgba(52, 54, 66, 0.1);
+  outline: none;
+}
+.cd-form input.has-error {
+  border: 1px solid #d76666;
+}
+.cd-form input[type=password] {
+  /* space left for the HIDE button */
+  padding-right: 65px;
+}
+.cd-form input[type=submit] {
+  padding: 16px 0;
+  cursor: pointer;
+  background: #007fff;
+  color: #FFF;
+  font-weight: bold;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.no-touch .cd-form input[type=submit]:hover, .no-touch .cd-form input[type=submit]:focus {
+  background: #3599ae;
+  outline: none;
+}
+.cd-form .hide-password {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 6px 15px;
+  border-left: 1px solid #d2d8d8;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-size: 0.875rem;
+  color: #343642;
+}
+.cd-form .cd-error-message {
+  display: inline-block;
+  position: absolute;
+  left: -5px;
+  bottom: -35px;
+  background: rgba(215, 102, 102, 0.9);
+  padding: .8em;
+  z-index: 5;
+  color: #FFF;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  border-radius: 0.25em;
+  /* prevent click and touch events */
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s 0, visibility 0 0.2s;
+  -moz-transition: opacity 0.2s 0, visibility 0 0.2s;
+  transition: opacity 0.2s 0, visibility 0 0.2s;
+}
+.cd-form .cd-error-message::after {
+  /* triangle */
+  content: '';
+  position: absolute;
+  left: 22px;
+  bottom: 100%;
+  height: 0;
+  width: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgba(215, 102, 102, 0.9);
+}
+.cd-form .cd-error-message.is-visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.2s 0, visibility 0 0;
+  -moz-transition: opacity 0.2s 0, visibility 0 0;
+  transition: opacity 0.2s 0, visibility 0 0;
+}
+@media only screen and (min-width: 600px) {
+  .cd-form {
+    padding: 2em;
+  }
+  .cd-form .fieldset {
+    margin: 2em 0;
+  }
+  .cd-form .fieldset:first-child {
+    margin-top: 0;
+  }
+  .cd-form .fieldset:last-child {
+    margin-bottom: 0;
+  }
+  .cd-form input.has-padding {
+    padding: 16px 20px 16px 50px;
+  }
+  .cd-form input[type=submit] {
+    padding: 16px 0;
+  }
+}
+
+
+
+#cd-login, #cd-signup {
+  display: none;
+}
+
+#cd-login.is-selected, #cd-signup.is-selected {
+  display: block;
+}
+
+/* --------------------sign up sign in 끝입니당--------------------------------- */
+
+.navbar {
+	width: 800px;
+	float: right;
+}

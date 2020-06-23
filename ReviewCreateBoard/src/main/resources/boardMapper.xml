@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="park.jae.sung.dao.BoardMapper">
+<!-- 
+	<select id="getBoard" parameterType="b" resultType="b">
+	select
+		boardnum
+		, title
+		, to_char(inputdate, 'yy-mm-dd') as inputdate
+		, id
+	from
+		personal_project_board
+	order by
+		boardnum desc,
+		inputdate desc
+	</select>
+ -->
+	<select id="getBoard" parameterType="b" resultType="b">
+	select
+		boardnum
+		, title
+		, to_char(inputdate, 'yy-mm-dd') as inputdate
+		, id
+		, content
+		, filename
+		, filesavename
+		, likenum
+	from
+		personal_project_board
+	order by
+		boardnum desc,
+		inputdate desc
+	</select>
+	<select id="getReply" resultType="r">
+	select
+		replynum
+		, bnum
+		, id
+		, content
+		, to_char(inputdate, 'yy-mm-dd') as inputdate
+	from
+		personal_project_reply
+	</select>
+	
+	
+	<delete id="deleteBoard" parameterType="b">
+	delete
+	from
+		personal_project_board
+	where
+		boardnum = #{bnum}
+	</delete>
+	<insert id="likeInsert" parameterType="map">
+	insert
+	into
+		personal_project_likeid
+	values
+		(
+		#{id}
+		, #{bnum}
+		)
+	</insert>
+	<update id="likeUp" parameterType="int">
+	update
+		personal_project_board
+	set
+		likenum	= likenum + 1
+	where
+		boardnum = #{bnum}
+	</update>
+	<update id="likeDown" parameterType="int">
+	update
+		personal_project_board
+	set
+		likenum = likenum - 1
+	where
+		boardnum = #{bnum}
+	</update>
+	<delete id="likeDelete" parameterType="map">
+	delete
+	from
+		personal_project_likeid
+	where
+		id = #{id}
+		and
+		bnum = #{bnum}
+	</delete>
+	<select id="likeCheck" parameterType="map" resultType="int">
+	select
+		count(*)
+	from
+		personal_project_likeid
+	where
+		id = #{id}
+		and
+		bnum = #{bnum}
+	</select>
+	
+	<select id="getRead" parameterType="int" resultType="b">
+	select
+		boardnum
+		, title
+		, to_char(inputdate, 'yy-mm-dd') as inputdate
+		, id
+		, content
+		, filename
+		, filesavename
+		, likenum
+		from
+			personal_project_board
+		where
+			boardnum = #{bnum}
+	</select>
+	
+	<insert id="setReply" parameterType="r">
+	insert
+	into 
+		personal_project_reply
+		(
+			replynum
+			, bnum
+			, id
+			, content
+		)
+	values
+		(
+			personal_project_replynum_seq.nextval
+			, #{bnum}
+			, #{id}
+			, #{content}
+		)
+	</insert>
+	
+<!--  	
+	<select id="getReply" parameterType="int" resultType="r">
+	select
+		replynum
+		, id
+		, content
+		, to_char(inputdate, 'yy-mm-dd') as inputdate
+	from
+		personal_project_reply
+	where
+		bnum = #{bnum}
+	</select>
+-->	
+
+<!--   
+	<update id="updateReply" parameterType="r">
+	update
+		personal_project_reply
+	set
+		id = #{id}
+		<if test="content != null and content != ''">
+		, content = #{content}
+		</if>
+	where
+		replynum = #{replynum}
+	</update>
+-->	
+	
+	<delete id="deleteReply" parameterType="r">
+	delete
+	from
+		personal_project_reply
+	where
+		replynum = #{replynum}
+	</delete>
+
+<!-- 
+	<select id="getTotal" resultType="int">
+	select
+		count(*)
+	from
+		personal_project_board
+	</select>
+-->
+	
+	<insert id="writeBoard" parameterType="b">
+	insert
+	into
+		personal_project_board
+		(
+			boardnum
+			, id
+			, title
+			, content
+			<if test="filename != null and filesavename != null">
+			, filename
+			, filesavename
+			</if>
+		)
+	values 
+		(
+			personal_project_boardnum_seq.nextval
+			, #{id}
+			, #{title}
+			, #{content}
+			<if test="filename != null and filesavename != null">
+			, #{filename}
+			, #{filesavename}
+			</if>
+		)
+	</insert>
+	<update id="getFileDelete" parameterType="map">
+	update
+		personal_project_board
+	set
+		filename = null
+		, filesavename = null
+	where
+		boardnum = #{bnum}
+	</update>
+	<update id="updateBoard" parameterType="b">
+	update
+		personal_project_board
+	set
+		id= #{id}
+		<if test="title != null and title != ''">
+		, title = #{title}
+		</if>
+		<if test="content != null and content != ''">
+		, content = #{content}
+		</if>
+		<if test="filename != null and filesavename != null">
+		, filename = #{filename}
+		, filesavename = #{filesavename}
+		</if>
+	where
+		boardnum = #{boardnum}
+	</update>
+	<select id="likeall" parameterType="int" resultType="int">
+	select
+		likenum
+	from
+		personal_project_board
+	where
+		boardnum = #{bnum}
+	</select>
+</mapper>
