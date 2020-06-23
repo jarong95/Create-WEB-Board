@@ -1,7 +1,5 @@
 package Create.Board.Review.VO;
 
-import java.security.Key;
-
 public class MemberVO {
 
 	private String id;

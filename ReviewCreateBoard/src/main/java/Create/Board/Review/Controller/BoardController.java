@@ -64,7 +64,7 @@ public class BoardController {
 			bv.setFilesavename(savedfile);
 		}
 		
-		int result = dao.writeBoard(bv);
+		dao.writeBoard(bv);
 		return "redirect:board";
 	}
 	
@@ -163,7 +163,7 @@ public class BoardController {
 				bv.setFilesavename(savedfile);
 			}
 		}
-		int result = dao.updateBoard(bv);
+		dao.updateBoard(bv);
 		return "redirect:board";
 	}
 	

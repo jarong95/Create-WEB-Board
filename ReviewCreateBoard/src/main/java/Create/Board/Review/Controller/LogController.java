@@ -69,7 +69,7 @@ public class LogController {
 	public String updateID(HttpSession sess, MemberVO member){
 		String id = (String)sess.getAttribute("log_id");
 		member.setId(id);
-		int result = dao.setInfo(member);
+		dao.setInfo(member);
 		return "redirect:/";
 	}
 	
@@ -81,7 +81,7 @@ public class LogController {
 	@RequestMapping(value="delete", method=RequestMethod.POST)
 	public String deleteID(MemberVO member, HttpSession sess){
 		String id = (String)sess.getAttribute("log_id");
-		int result = dao.deleteID(id);
+		dao.deleteID(id);
 		sess.setAttribute("delete_id", true);
 		return "redirect:/board";
 	}

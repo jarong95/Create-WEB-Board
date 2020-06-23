@@ -53,7 +53,7 @@ function checkWriteForm(){
 <tr><td>
 글의 제목</td><td><input type="text" name="title" id="title" value="${board_update.title }" placeholder="제목을 입력해주세요."></td></tr>
 <tr><td>글의 내용</td><td>
-<textarea rows="20" cols="100" name="content" id="content" v placeholder="내용을 입력해 주세요.">${board_update.content}</textarea></td></tr>
+<textarea rows="20" cols="100" name="content" id="content" placeholder="내용을 입력해 주세요.">${board_update.content}</textarea></td></tr>
 <c:if test="${board_update.filename == null}">
 	<tr><td>
 	첨부파일1</td><td><input type="file" id="file" name="upload1" size="30" accept=".gif,.jpg,.jpeg,.png"></td></tr>
