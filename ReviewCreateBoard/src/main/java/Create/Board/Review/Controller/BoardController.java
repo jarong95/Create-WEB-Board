@@ -44,23 +44,10 @@ public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	//로거를 사용하기 위해 현재 상황을 파악하기 위한 목적으로 사용한다. 
 	//System.out.println();을 사용이 불가하기 때문
-	/*
-	 * 
 	
-	//페이지 당 글 수 
-	private static final int countPerPage = 10;
-		
-	//페이지 이동 링크 그룹당 페이지 수
-	private static final int pagePerGroup = 10;
-	*/
 	
 	private final String uploadPath = "/boardfile";
 	//파일을저장하기위한 경로 설정
-	
-/*	@RequestMapping(value="write", method=RequestMethod.GET)
-	public String write(){
-		return "write";
-	}*/
 	
 	
 	//글쓰기 post로 받으음
@@ -84,34 +71,6 @@ public class BoardController {
 		return "redirect:board";
 	}
 	
-	/*
-	@RequestMapping(value="board", method=RequestMethod.GET)
-	public String board(Model model
-			, @RequestParam(value="page", defaultValue="1") int page){
-		
-		int total = dao.getTotal();
-		PageNavigator pageNavigator 
-		= new PageNavigator(countPerPage, pagePerGroup, page, total);
-		ArrayList<BoardVO> list = dao.getBoard(pageNavigator.getStartRecord(), pageNavigator.getCountPerPage());
-	
-		model.addAttribute("list_board", list);
-		return "first";
-	}
-	*/
-
-	/*
-	@RequestMapping(value="read", method=RequestMethod.GET)
-	public String read(int bnum, Model model){
-		
-		BoardVO result = dao.getRead(bnum);
-		ArrayList<ReplyVO> resultList = dao.getReply(bnum);
-		model.addAttribute("board", result);
-		model.addAttribute("reply", resultList);
-		return "read";
-	}
-	 */
-	
-	
 	@RequestMapping(value="board", method=RequestMethod.GET)
 	public String board(Model model){
 		
@@ -128,49 +87,12 @@ public class BoardController {
 		return "groupBoard";
 	}
 	
-/*	@RequestMapping(value="updateBoard", method=RequestMethod.GET)
-	public String board(int bnum, Model model){
-		model.addAttribute("board_update", dao.getRead(bnum));
-		return "updateboard";
-	}*/
-	
 	//ajax를 활용하기 위한 어노테이션
 	@ResponseBody
 	@RequestMapping(value="updateBoard", method=RequestMethod.GET)
 	public BoardVO board(int bnum, Model model){
 		return dao.getRead(bnum);	
 	}
-/*	
-	@ResponseBody
-	@RequestMapping(value="updateBoard", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
-	public String board(BoardVO bv
-			, MultipartFile upload1
-			, String fileDel1
-			, String deleteFile){
-		int boardnum = Integer.parseInt(bv.getBoardnum());
-		String savedfile1 = dao.getRead(boardnum).getFilesavename();
-		if(deleteFile != null && !deleteFile.equals("continue")){
-			if(deleteFile.equals("delete")){
-				FileService.deleteFile(uploadPath + "/" + savedfile1);
-				dao.getFileDelete(boardnum, 1);
-			}
-			
-			if (deleteFile.equals("update") && upload1 != null && !upload1.isEmpty()) {
-				FileService.deleteFile(uploadPath + "/" + savedfile1);
-				String savedfile = FileService.saveFile(upload1, uploadPath);
-				bv.setFilename(upload1.getOriginalFilename());
-				bv.setFilesavename(savedfile);
-			}
-		}
-		if(deleteFile == null && upload1 != null && !upload1.isEmpty()){
-			String savedfile = FileService.saveFile(upload1, uploadPath);
-			bv.setFilename(upload1.getOriginalFilename());
-			bv.setFilesavename(savedfile);
-		}
-		int result = dao.updateBoard(bv);
-		return "redirect:board";
-	}
-	*/
 	
 	//게시글을 수정
 	@RequestMapping(value="updateBoard", method=RequestMethod.POST, produces="application/json; charset=UTF-8")
@@ -193,12 +115,14 @@ public class BoardController {
 		return "redirect:board";
 	}
 	
+	//게시글 삭제
 	@RequestMapping(value="deleteBoard", method=RequestMethod.GET)
 	public String delete(int bnum, Model model){
 		model.addAttribute("bnum", bnum);
 		return "deleteBoard";
 	}
-
+	
+	//게시글 삭제, 파일도 삭제
 	@RequestMapping(value="deleteBoard", method=RequestMethod.POST)
 	public String delete(String password, int bnum, HttpSession sess){
 		MemberVO delete = new MemberVO();
@@ -219,11 +143,14 @@ public class BoardController {
 		return "redirect:board";
 	}
 	
+	//좋아요 설정
 	@ResponseBody
 	@RequestMapping(value="like", method=RequestMethod.GET, produces="application/json; charset=UTF-8")
 	public String like(int bnum, HttpSession sess){
 		String id = (String)sess.getAttribute("log_id");
 		int result = dao.likeCheck(id,bnum);
+		
+		//아이디를 검색해서 해당 아이디가 해당 글을 이미 좋아요를 눌렀던 것이 있으면 좋아요를 삭제하고 -1을 그런 적이 없었으면 추가하고 +1을한다음
 		if(result != 0){
 			dao.likeDelete(bnum,id);
 			dao.likeDown(bnum);
@@ -232,9 +159,12 @@ public class BoardController {
 			dao.likeInsert(bnum, id);
 			dao.likeUp(bnum);
 		}
+		
+		//like 값을 가져온다음 String으로 보냄
 		return dao.likeall(bnum)+"";
 	}
 	
+	//파일을 다운로드
 	@RequestMapping(value = "download", method = RequestMethod.GET)
 	public String fileDownload(int boardnum, Model model, HttpServletResponse response, int number) {
 		BoardVO board = dao.getRead(boardnum);		//글 1개에 대한 정보
@@ -269,33 +199,24 @@ public class BoardController {
 			e.printStackTrace();
 		}
 
-		//return "redirect:read?bnum="+boardnum;
 		return "redirect:board";
 	}
 	
 	
+	//댓글 달기
 	@RequestMapping(value="reply",method=RequestMethod.POST)
 	public String reply(ReplyVO result, HttpSession sess){
 		result.setId((String)sess.getAttribute("log_id"));
 		logger.debug("{}", result);
 		dao.setReply(result);
-		//return "redirect:read?bnum="+result.getBnum();
 		return "redirect:board";
 	}
 	
-/*	@RequestMapping(value="updateRE", method=RequestMethod.POST)
-	public String update(ReplyVO result){
-		logger.debug("{}",result);
-		dao.updateReply(result);
-		//return "redirect:read?bnum="+result.getBnum();
-		return "redirect:board";
-	}*/
-	
+	//댓글 삭제
 	@RequestMapping(value="deleteRE", method=RequestMethod.GET)
 	public String delete(ReplyVO result){
 		logger.debug("{}",result);
 		dao.deleteReply(result);
-		//return "redirect:read?bnum="+result.getBnum();
 		return "redirect:board";
 	}
 	
