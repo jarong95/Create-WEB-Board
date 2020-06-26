@@ -19,6 +19,7 @@ public class DeleteInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		//홈페이지에 접속하면 탈퇴 후 7일이 지난 사람을 삭제한다.
 		dao.deleteCheck();
 		return super.preHandle(request, response, handler);
 	}

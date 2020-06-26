@@ -23,13 +23,13 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		String loginId = (String) session.getAttribute("log_id");
 		
-		//로그인되지 않은 경우 로그인 페이지로 이동
+		//로그인 되어 있는 경우 기본 페이지로 이동하면 자동적으로 /board페이지로 이동한다. 
 		if (loginId != null) {
 			//request.getContextPath()로 루트 경로를 구하여 절대 경로로 처리
 			response.sendRedirect(request.getContextPath() + "/board");
 			return false;
 		}
-		//로그인 된 경우 요청한 경로로 진행
+		//로그인 되지 않은 경우 요청한 경로로 진행
 		return super.preHandle(request, response, handler);
 	}
 

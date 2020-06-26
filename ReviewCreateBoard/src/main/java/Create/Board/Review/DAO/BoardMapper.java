@@ -15,8 +15,6 @@ public interface BoardMapper {
 
 	int writeBoard(BoardVO bv);
 
-	//ArrayList<BoardVO> getBoard(RowBounds rb);
-
 	int deleteBoard(int bnum);
 
 	void likeInsert(HashMap<String, Object> map);
@@ -33,13 +31,9 @@ public interface BoardMapper {
 
 	void setReply(ReplyVO result);
 
-	//ArrayList<ReplyVO> getReply(int bnum);
-
 	void updateReply(ReplyVO result);
 
 	void deleteReply(ReplyVO result);
-
-	//int getTotal();
 
 	void getFileDelete(HashMap<String, Integer> map);
 
