@@ -16,6 +16,7 @@ public class DeleteInterceptor extends HandlerInterceptorAdapter {
 	MemberDAO dao;
 	
 	//콘트롤러의 메서드 실행 전에 처리
+	// SQL을 좀 더 공부해서 매번  삭제가 돌아가도록 sql문 작성 할 것!!
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {

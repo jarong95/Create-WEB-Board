@@ -6,166 +6,8 @@
 <title>Home</title>
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <link href="resources/css/header.css" rel="stylesheet" />
-<style type="text/css">
-* {box-sizing: border-box;}
-body {
-	font-family: Verdana, sans-serif;
-	height: 627.200;
-	width: 1503.200;}
-
-
-.header .searchbar a {
-	color: #aaa;
-	font-weight: 700;
-	margin: 0 15px 0 15px;
-	font-size: 1.4em;
-}
-/* -------------------------------그룹피드임ㅁ미당-------------------------------- */
-/* ----------------------------글쓰기 폼 css끝------------------------------- */
-* {
-  outline:none;
-	border:none;
-	margin:0px;
-	padding:0px;
-}
-
-#paper {
-	color:#333;
-	font-size:20px;
-}
-#margin {
-	margin-left:12px;
-	margin-bottom:20px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
-	user-select: none; 
-}
-#text {
-	overflow:hidden;
-	background-color:#FFF;
-	color:#33333;
-	font-weight:normal;
-	font-size:18px;
-	resize:none;
-	padding: 30 30 30 30;
-	background-color: #f6f6f6;
-}
-.replytext {
-	overflow:hidden;
-	background-color:#FFF;
-	color:#33333;
-	font-weight:normal;
-	font-size:13px;
-	resize:none;
-	padding: 10 10 10 10;
-	background-color: #f6f6f6;
-}
-#title {
-	background-color:transparent;
-	border-bottom:3px solid #f6f6f6;
-	border-top:none;
-	border-left:none;
-	border-right:none;
-	color:#33333;
-	font-size:20px;
-	height:28px;
-	font-weight:bold;
-	width:320px;
-}
-
-#wrapper {
-	width:800;
-	height:auto;
-	margin-left:auto;
-    margin-right: 0px;
-	margin-top:24px;
-	margin-bottom:100px;
-}
-.btn-default {
-  background: #007fff none repeat scroll 0 0;
-  border: 1px solid #007fff;
-  border-radius: 20px;
-  color: #ffffff;
-  height: 40px;
-  padding: 0 22px;
-  transition: all 0.3s ease 0s;
-  font-size: 16px;
-  font-weight: 500;
-  text-transform: uppercase;
-  padding-bottom: 11px;
-  padding-top: 11px;
-  text-decoration: none;
-  float: right;
-  margin-top: 10px;
-}
-.btn-default:hover {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: 1px solid #007fff;
-  color: #007fff;
-}
-/* ----------------------------글쓰기 폼 css끝------------------------------- */
-.feedall {
-  position: relative;
-  max-width: 800px;
-  margin: auto;
-  top:200;
-  z-index: 1;
-}
-.item {
-  display: flex;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-/* -------------------------------그룹피드임ㅁ미당-------------------------------- */
-
-/* 그룹 글에 댓글 등등 보여주기욤 */
-
-.reDel {
-	text-align: right;
-	width: 20;
-}
-
-.boardDel {
-	text-align: right;
-	width: 20;
-}
-
-.boardUpdate {
-	text-align: right;
-	width: 20;
-}
-
-.writedate {
-	text-align: right;
-	font-size: 12px;
-	width: 100;
-}
-
-.flip{
-  padding: 5px;
-  text-align: center;
-  background-color: #007fff;
-  color: white;
-}
-.flip2{
-  padding: 5px;
-  text-align: center;
-  background-color: #e100ff;
-  color: white;
-}
-.panel, .panel2{
-  padding: 5px;
-  text-align: center;
-  background-color: #f6f6f6;
-  display: none;
-}
-
-
-</style>
-
-
+<link href="resources/css/backCSS.css" rel="stylesheet" />
+<script type="text/javascript" src="resources/js/jsp_Script/groupboard.js"></script>
 </head>
 <body>
 
@@ -215,18 +57,6 @@ body {
 							</td>
 						</c:if>
 						</tr></table>
-						<script type="text/javascript">
-						function recovery(){
-							$.ajax({
-								url : 'recovery'
-								, type : 'post'
-								, success : function(e){
-									alert('복구되었습니다.');
-									location.href="./";
-								}
-							});
-						}
-						</script>
 					</nav>
 				</td>
 			</tr>
@@ -234,28 +64,7 @@ body {
 	</div>
 </div>
 		
-<!-- ///////////////////글쓰기 js임////////////// -->
-<script type="text/javascript">
-$(document).ready(function(){
-	  $('#title').focus();
-	    $('#text').autosize();
-	});
-	
-function writeForm(){
-	var title_board = $('#title').val();
-	var content_board = $('#text').val();
-	if(title_board.length < 3 || title_board.length > 21){
-		alert('제목을 4글자 이상 20글자 이하로 써주세요.');
-		return;
-	}
-	if(content_board.length < 3 || title_board.length > 500){
-		alert('제목을 4글자 이상 300글자 이하로 써주세요.');
-		return;
-	}
-	$('#paper').submit();
-	
-}
-</script>
+
 <div class="feedall">
 <!-- /////////////////////////////////글쓰기이므!!!!!!!!!!!!!/////////////////////////// -->
 
@@ -272,103 +81,9 @@ function writeForm(){
 </div>
 
 <!-- /////////////////////////////////글쓰기끝!!!!!!!!!!!!/////////////////////////// -->
-<!-- //////////////////그룹 글 보여주기욤//////////////// -->
 
-<script> 
-$(document).ready(function(){
-  $(".flip").click(function(event){
-	  var e = $(event.target).attr('id');
-	  var i = 'panel'+e;
-    $('#'+i).slideToggle("slow");
-  });
-  $(".flip2").click(function(event){
-	  var e = $(event.target).attr('id');
-	  var i = 'panel2'+e;
-    $('#'+i).slideToggle("slow");
-  });
-});
-var fileText = $('#updateFile').html();
-function checkUpdateBoard(bnum, file){
-	if(file.length != 0){
-		 if(!confirm("파일을 삭제하거나 수정 추가를 하려면 확인을 첨부파일을 유지하려면 취소를 눌러주세요.?")){
-			 $('#updateFile').html('');
-			 $('#continueFile').val('yes');
-		 }
-		 else{
-			 $('#continueFile').val('no');
-		 }
-	}
-	else{
-		 $('#continueFile').val('no');
-	 }
 
-	$.ajax({
-		url : 'updateBoard'
-		, type : 'get'
-		, data : {bnum : bnum}
-		, dataType : 'json'
-		, success : function(e){
-			$('#title').val(e.title);
-			$('#text').val(e.content);
-			$('#updateBoardVO').val(bnum);
-			$('#sendBoard').attr('href','javascript:updateBoard_send()');
-			$('#paper').attr('action', 'updateBoard');
-			$('#title').focus();
-		}
-	}); 
-}
-function deleteBoard(num){
-	window.open('deleteBoard?bnum='+num,'js4','width=600, height=300, left=0, top=0');
-}
 
-function updateBoard_send(){
-	var title_board = $('#title').val();
-	var content_board = $('#text').val();
-	if(title_board.length < 3 || title_board.length > 21){
-		alert('제목을 4글자 이상 20글자 이하로 써주세요.');
-		return;
-	}
-	if(content_board.length < 3 || title_board.length > 500){
-		alert('제목을 4글자 이상 300글자 이하로 써주세요.');
-		return;
-	}
-	$('#paper').submit();
-}
-
-/* function updateBoard_send(num){
-	var title_board = $('#title').val();
-	var content_board = $('#text').val();
-	if(title_board.length < 3 || title_board.length > 21){
-		alert('제목을 4글자 이상 20글자 이하로 써주세요.');
-		return;
-	}
-	if(content_board.length < 3 || title_board.length > 500){
-		alert('제목을 4글자 이상 300글자 이하로 써주세요.');
-		return;
-	}
-	$.ajax({
-		url : 'groupUpdate'
-		, type : 'post'
-		, data : {title : title_board, content : content_board, bnum_group : num}
-		, success : function(){
-			alert('글이 수정되었습니다.');
-			location.href = "";
-		}
-	});
-} */
-function likeC(num, i){
-	$.ajax({
-		url : 'like'
-		, type : 'get'
-		, data : {bnum : num}
-		, dataType : 'text'
-		, success : function(e){
-			$('#likeCheck'+i).html(e);			
-		}
-	})
-}
-
-</script>
 <!-- //////////////////그룹 글 보여주기욤//////////////// -->
 
 
@@ -470,19 +185,6 @@ function likeC(num, i){
 </c:if>
 
 </div>
-
-<script type="text/javascript">
-function reply_submit(num){
-	var re = $('#replytext'+num).val();
-	if(re.length < 1 || re.length > 300){
-		alert('댓글은 1글자 이상 300글자 미만으로 입력해  주세요.');
-		return;
-	}
-	$('#reply_form'+num).submit();
-}
-
-</script>
-
 
 </body>
 </html>

@@ -11,30 +11,8 @@
 <title>로그인</title>
 <link rel="stylesheet" type="text/css" href="resources/css/default.css" />
 <script src="resources/js/jquery-3.3.1.min.js"></script>
-<script>
-//로그인 폼 검사
-$(function (){
-	$('#logButton').on('click',check);
-	$('#joinButton').on('click',checkJ);	
-});
-function check(){
-	var id = $('#logId').val();
-	var pw = $('#pw').val();
-	
-	if(id.length < 3 || id.length > 10){
-		alert('ID 입력하시오.');
-		return;
-	}
-	if(pw.length < 3 || pw.length > 10){
-		alert('비밀번호 입력하시오.');
-		return;
-	}
-	$('#log_form').submit();
-}
-function checkJ(){
-	location.href="signup";
-}
-</script>
+<script src="resources/js/jsp_Script/home.js"></script>
+
 </head>
 <body>
 <h1>[ 로그인 ]</h1>
