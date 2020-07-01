@@ -14,8 +14,6 @@ public interface MemberMapper {
 
 	int deleteID(String id);
 
-	void deleteCheck();
-
 	int checkID2(String id);
 
 	void recoveryID(String id);

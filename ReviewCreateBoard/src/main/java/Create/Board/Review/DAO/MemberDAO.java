@@ -63,12 +63,6 @@ public class MemberDAO {
 		return result;
 	}
 
-	//회원이 탈퇴 상태인지 확인
-	public void deleteCheck() {
-		MemberMapper mapper = sqlsession.getMapper(MemberMapper.class);
-		mapper.deleteCheck();
-	}
-
 	//중복 확인
 	public int cehckID(String id) {
 		MemberMapper mapper = sqlsession.getMapper(MemberMapper.class);
