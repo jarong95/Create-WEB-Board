@@ -89,7 +89,7 @@
 
 
  <c:if test="${list_board != null && list_board.size() >= 1}">
-  <c:forEach begin="0" end="${list_board.size()-1}" var="i">
+  <c:forEach begin="0" end="${list_board.size()-1}" var="i" >
 
 <div class="item" style="margin: 20 0 20 0">
   <div class="image" style="margin: 0 20 0 0">
